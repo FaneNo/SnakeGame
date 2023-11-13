@@ -1,92 +1,41 @@
 package com.example.snakegame;
 
-import android.app.GameManager;
-import android.app.GameState;
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Point;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.SoundPool;
-import android.os.Build;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import java.io.IOException;
 
 
 class SnakeGame extends SurfaceView implements Runnable{
 
     // Objects for the game loop/thread
     private Thread mThread = null;
-    // Control pausing between updates
-    private long mNextFrameTime;
-    // Is the game currently playing and or paused?
-    private volatile boolean mPlaying = false;
-    private volatile boolean mPaused = true;
-
-    // for playing sound effects
-    private SoundPool mSP;
-    
-    private int mEat_ID = -1;
-    private int mCrashID = -1;
-
     // The size in segments of the playable area
-    private final int NUM_BLOCKS_WIDE = 40;
-    private int mNumBlocksHigh;
 
-    // How many points does the player have
-    private int mScore;
-
-    // Objects for drawing
-    private Canvas mCanvas;
     private SurfaceHolder mSurfaceHolder;
-    private Paint mPaint;
-
-    // A snake ssss
-    private Snake mSnake;
-    // And an apple
-    private Apple mApple;
 
     private Sound sound;
     private Drawing drawing;
-    private gameState state;
-    private newGameNupdate gameUpdate;
+    private GameState state;
+    private NewGameNupdate gameUpdate;
+
     // This is the constructor method that gets called
     // from SnakeActivity
     public SnakeGame(Context context, Point size) {
         super(context);
 
-        // Work out how many pixels each block is
-        int blockSize = size.x / NUM_BLOCKS_WIDE;
-        // How many blocks of the same size will fit into the height
-        mNumBlocksHigh = size.y / blockSize;
 
         sound = new Sound(context);
-
         //Initialize playing/paused game state
-        state = new gameState();
+        state = new GameState();
 
         // Initialize the drawing objects
         mSurfaceHolder = getHolder();
 
         drawing = new Drawing(mSurfaceHolder);
         // Call the constructors of our two game objects
-//        mApple = new Apple(context,
-//                new Point(NUM_BLOCKS_WIDE,
-//                        mNumBlocksHigh),
-//                blockSize);
-//
-//        mSnake = new Snake(context,
-//                new Point(NUM_BLOCKS_WIDE,
-//                        mNumBlocksHigh),
-//                blockSize);
-        gameUpdate = new newGameNupdate(context,size,state);
+        gameUpdate = new NewGameNupdate(context,size,state);
 
     }
 
@@ -109,7 +58,8 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     //this part will do the drawing
     public void draw(){
-        drawing.draw(state.isPaused(), getScore(),gameUpdate.getApple(),gameUpdate.getSnake(), getResources().getString(R.string.tap_to_play));
+        drawing.draw(state.isPaused(), getScore(),gameUpdate.getApple(),gameUpdate.getSnake(), getResources().getString(R.string.tap_to_play),gameUpdate.getControl());
+
     }
 
 

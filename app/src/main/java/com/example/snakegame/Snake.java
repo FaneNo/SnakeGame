@@ -1,5 +1,6 @@
 package com.example.snakegame;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,9 +10,11 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
 
+import androidx.appcompat.widget.AppCompatImageButton;
+
 import java.util.ArrayList;
 
-class Snake {
+class Snake extends SnakeActivity{
 
     // The location in the grid of all the segments
     private ArrayList<Point> segmentLocations;
@@ -206,6 +209,7 @@ class Snake {
     }
 
     void draw(Canvas canvas, Paint paint) {
+        paint.setAntiAlias(true);
 
         // Don't run this code if ArrayList has nothing in it
         if (!segmentLocations.isEmpty()) {
@@ -257,6 +261,7 @@ class Snake {
     }
 
 
+
     // Handle changing direction
     void switchHeading(MotionEvent motionEvent) {
 
@@ -296,4 +301,5 @@ class Snake {
             }
         }
     }
+
 }

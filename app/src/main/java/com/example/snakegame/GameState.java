@@ -1,6 +1,6 @@
 package com.example.snakegame;
 
-public class gameState {
+public class GameState {
     private volatile boolean mPlaying = false;
     private volatile boolean mPaused = true;
 
