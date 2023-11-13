@@ -4,15 +4,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".SnakeActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+                <Button
+                    android:id="@+id/up"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:text="Up"
+                    android:layout_marginTop="175dp"
+                    android:layout_marginLeft="670dp"/>
+
+                <Button
+                    android:id="@+id/right"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:text="Right"
+                    tools:ignore="MissingConstraints"
+                    android:layout_marginTop="225dp"
+                    android:layout_marginLeft="725dp"/>
+
+                <Button
+                    android:id="@+id/downBtn"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:text="Down"
+                    tools:ignore="MissingConstraints"
+                    android:layout_marginTop="275dp"
+                    android:layout_marginLeft="670dp"/>
+                <Button
+                    android:id="@+id/left"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:text="Left"
+                    tools:ignore="MissingConstraints"
+                    android:layout_marginTop="225dp"
+                    android:layout_marginLeft="615dp"/>
+
+                <Button
+                    android:id="@+id/pause"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:text="pause"
+                    tools:ignore="MissingConstraints"
+                    android:layout_marginTop="225dp"
+                    android:layout_marginLeft="670dp"
+                    />
+
+
+
+                <Button
+                    android:id="@+id/new_game"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/material_dynamic_neutral10"
+                    android:text="New Game"
+                    tools:ignore="MissingConstraints"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="645dp"/>
+
+<!--                <Button-->
+<!--                    android:id="@+id/playagain"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:background="@color/red"-->
+<!--                    android:text="Game Over ! Play Again"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textSize="20dp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    tools:ignore="MissingConstraints"-->
+<!--                    tools:layout_editor_absoluteX="34dp"-->
+<!--                    tools:layout_editor_absoluteY="16dp"/>-->
+
+<!--                <Button-->
+<!--                    android:id="@+id/resume"-->
+<!--                    android:layout_width="150dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/material_dynamic_neutral10"-->
+<!--                    android:text="Resume Game"-->
+<!--                    android:textAlignment="center"-->
+<!--                    tools:ignore="MissingConstraints"-->
+<!--                    tools:layout_editor_absoluteX="34dp"-->
+<!--                    tools:layout_editor_absoluteY="211dp"/>-->
+
+
+
+                <TextView
+                    android:id="@+id/score"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/darker_gray"
+                    android:text="score"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="140dp"
+                    android:layout_marginLeft="645dp"/>
+
+
+
+        </FrameLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

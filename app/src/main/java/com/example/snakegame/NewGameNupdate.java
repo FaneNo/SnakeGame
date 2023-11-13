@@ -2,8 +2,9 @@ package com.example.snakegame;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.view.SurfaceView;
 
-public class newGameNupdate {
+public class NewGameNupdate {
     private Snake snake;
     private final int NUM_BLOCKS_WIDE = 40;
     private Apple apple;
@@ -11,14 +12,17 @@ public class newGameNupdate {
     private int score;
     private int numBlocksHigh;
     private long nextFrameTime;
-    private gameState state;
-    public newGameNupdate(Context context, Point size, gameState state){
+    private GameState state;
+    private Control control;
+    public NewGameNupdate(Context context, Point size, GameState state){
+
         this.state = state;
         int blockSize = size.x/NUM_BLOCKS_WIDE;
         numBlocksHigh = size.y/blockSize;
         sound = new Sound(context);
         apple = new Apple(context, new Point(NUM_BLOCKS_WIDE, numBlocksHigh), blockSize);
         snake = new Snake(context, new Point(NUM_BLOCKS_WIDE, numBlocksHigh), blockSize);
+        control = new Control(context, new Point(NUM_BLOCKS_WIDE, numBlocksHigh), blockSize);
     }
 
     public void newGame(){
@@ -80,6 +84,9 @@ public class newGameNupdate {
     }
     public Snake getSnake() {
         return snake;
+    }
+    public Control getControl() {
+        return control;
     }
 
     public Apple getApple() {

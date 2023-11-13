@@ -1,11 +1,12 @@
 package com.example.snakegame;
 
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceHolder;
 
-public class Drawing {
+public class Drawing  {
     private Canvas canvas;
     private SurfaceHolder surfaceHolder;
     private Paint paint;
@@ -14,8 +15,10 @@ public class Drawing {
     public Drawing(SurfaceHolder surfaceHolder){
         this.surfaceHolder = surfaceHolder;
         paint = new Paint();
+
     }
-    public void draw(boolean paused, int score, Apple apple, Snake snake, String tapToPlayMessage){
+    public void draw(boolean paused, int score, Apple apple, Snake snake, String tapToPlayMessage, Control control){
+
         if(surfaceHolder.getSurface().isValid()){
             canvas = surfaceHolder.lockCanvas();
             // Fill the screen with a color
@@ -31,6 +34,7 @@ public class Drawing {
             // Draw the apple and the snake
             apple.draw(canvas, paint);
             snake.draw(canvas, paint);
+//            control.draw(canvas,paint);
 
             // Draw some text while paused
             if (paused) {
@@ -47,4 +51,5 @@ public class Drawing {
             surfaceHolder.unlockCanvasAndPost(canvas);
         }
     }
+
 }

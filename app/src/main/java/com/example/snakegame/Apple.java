@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
-import java.util.Random;
 
 class Apple {
 
@@ -22,6 +21,7 @@ class Apple {
     // An image to represent the apple
     private Bitmap mBitmapApple;
 
+    private ObjectSpawn objectSpawn;
     /// Set up the apple in the constructor
     Apple(Context context, Point sr, int s){
 
@@ -37,14 +37,15 @@ class Apple {
 
         // Resize the bitmap
         mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, s, s, false);
+
+        objectSpawn = new ObjectSpawn(mSpawnRange);
     }
 
     // This is called every time an apple is eaten
     void spawn(){
-        // Choose two random values and place the apple
-        Random random = new Random();
-        location.x = random.nextInt(mSpawnRange.x) + 1;
-        location.y = random.nextInt(mSpawnRange.y - 1) + 1;
+        Point spawnLocation = objectSpawn.spawn();
+        location.x = spawnLocation.x;
+        location.y = spawnLocation.y;
     }
 
     // Let SnakeGame know where the apple is
