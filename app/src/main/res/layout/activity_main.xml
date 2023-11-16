@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SnakeActivity">
-
-
+        
 
         <FrameLayout
             android:id="@+id/container"
@@ -19,43 +18,52 @@
             >
 
                 <Button
-                    android:id="@+id/up"
+                    android:id="@+id/upBtn"
+                    android:drawableTop="@drawable/up_arrow"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:text="Up"
+                    android:background="@android:color/holo_orange_dark"
+                    android:visibility="visible"
                     android:layout_marginTop="175dp"
-                    android:layout_marginLeft="670dp"/>
+                    android:layout_marginLeft="670dp"
+                   />
 
                 <Button
-                    android:id="@+id/right"
+                    android:id="@+id/rightBtn"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
+                    android:background="@android:color/holo_orange_dark"
                     android:text="Right"
                     tools:ignore="MissingConstraints"
                     android:layout_marginTop="225dp"
-                    android:layout_marginLeft="725dp"/>
+                    android:layout_marginLeft="725dp"
+                    />
 
                 <Button
                     android:id="@+id/downBtn"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
+                    android:background="@android:color/holo_orange_dark"
                     android:text="Down"
                     tools:ignore="MissingConstraints"
                     android:layout_marginTop="275dp"
-                    android:layout_marginLeft="670dp"/>
+                    android:layout_marginLeft="670dp"
+                    />
                 <Button
-                    android:id="@+id/left"
+                    android:id="@+id/leftBtn"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
+                    android:background="@android:color/holo_orange_dark"
                     android:text="Left"
                     tools:ignore="MissingConstraints"
                     android:layout_marginTop="225dp"
                     android:layout_marginLeft="615dp"/>
 
                 <Button
-                    android:id="@+id/pause"
+                    android:id="@+id/pauseBtn"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
+                    android:background="@android:color/holo_orange_dark"
                     android:text="pause"
                     tools:ignore="MissingConstraints"
                     android:layout_marginTop="225dp"
@@ -111,6 +119,8 @@
                     android:textStyle="bold"
                     android:layout_marginTop="140dp"
                     android:layout_marginLeft="645dp"/>
+
+
 
 
 

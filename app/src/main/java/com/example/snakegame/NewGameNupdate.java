@@ -69,14 +69,12 @@ public class NewGameNupdate {
             score += 1;
 
             // Play a sound
-//            mSP.play(mEat_ID, 1, 1, 0, 0, 1);
             sound.playEatSound();
         }
 
         // Did the snake die?
         if (snake.detectDeath()) {
             // Pause the game ready to start again
-//            mSP.play(mCrashID, 1, 1, 0, 0, 1);
             sound.playCrashSound();
             state.setPaused(true);
         }
