@@ -5,6 +5,8 @@ import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
 
 
 class SnakeGame extends SurfaceView implements Runnable{
@@ -19,6 +21,9 @@ class SnakeGame extends SurfaceView implements Runnable{
     private Drawing drawing;
     private GameState state;
     private NewGameNupdate gameUpdate;
+
+
+
 
     // This is the constructor method that gets called
     // from SnakeActivity
@@ -36,6 +41,8 @@ class SnakeGame extends SurfaceView implements Runnable{
         drawing = new Drawing(mSurfaceHolder);
         // Call the constructors of our two game objects
         gameUpdate = new NewGameNupdate(context,size,state);
+
+
 
     }
 
@@ -92,8 +99,12 @@ class SnakeGame extends SurfaceView implements Runnable{
                 }
 
                 // Let the Snake class handle the input
-                gameUpdate.getSnake().switchHeading(motionEvent);
+//                gameUpdate.getSnake().switchHeading(motionEvent);\
+//                gameUpdate.getSnake().switchHeading();
+
                 break;
+
+
 
             default:
                 break;
@@ -101,6 +112,9 @@ class SnakeGame extends SurfaceView implements Runnable{
         }
         return true;
     }
+
+
+
 
 
 
@@ -122,5 +136,8 @@ class SnakeGame extends SurfaceView implements Runnable{
         state.setPlaying(true);
         mThread = new Thread(this);
         mThread.start();
+    }
+    public NewGameNupdate getGameUpdate(){
+        return gameUpdate;
     }
 }
