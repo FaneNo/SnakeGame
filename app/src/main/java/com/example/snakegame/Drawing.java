@@ -24,8 +24,22 @@ public class Drawing {
     public void draw(boolean paused, int score, Apple apple, Snake snake, String tapToPlayMessage, Control control) {
         if (surfaceHolder.getSurface().isValid()) {
             canvas = surfaceHolder.lockCanvas();
+
+            // Fill the screen with a color
+            canvas.drawColor(Color.argb(255, 26, 128, 182));
+
+            // Set the size and color of the paint for the text
+            paint.setColor(Color.argb(255, 255, 255, 255));
+            paint.setTextSize(120);
+
+            // Draw the score
+            canvas.drawText("" + score, 20, 120, paint);
+
+            // Draw the apple and the snake
+
             drawBackground(canvas);
             drawScore(canvas, score);
+
             apple.draw(canvas, paint);
             snake.draw(canvas, paint);
             // control.draw(canvas, paint);
