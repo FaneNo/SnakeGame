@@ -57,10 +57,7 @@ class Snake extends SnakeActivity implements SurfaceHolder.Callback {
 
     // A bitmap for the body
     private Bitmap mBitmapBody;
-//    private final Button upBtn;
-//    private final Button downBtn;
-//    private final Button leftBtn;
-//    private final Button rightBtn;
+
 
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
@@ -87,10 +84,6 @@ class Snake extends SnakeActivity implements SurfaceHolder.Callback {
         mSegmentSize = ss;
         mMoveRange = mr;
 
-//        upBtn = findViewById(R.id.upBtn);
-//        downBtn = findViewById(R.id.downBtn);
-//        leftBtn = findViewById(R.id.leftBtn);
-//        rightBtn = findViewById(R.id.rightBtn);
 
         // Create and scale the bitmaps
         mBitmapHeadRight = BitmapFactory
@@ -302,82 +295,6 @@ class Snake extends SnakeActivity implements SurfaceHolder.Callback {
 
     }
 
-//     Handle changing direction
-//    void switchHeading() {
-////      Is the tap on the right hand side?
-////        if (motionEvent.getX() >= halfWayPoint) {
-////            switch (heading) {
-////                // Rotate right
-////                case UP:
-////                    heading = Heading.RIGHT;
-////                    break;
-////                case RIGHT:
-////                    heading = Heading.DOWN;
-////                    break;
-////                case DOWN:
-////                    heading = Heading.LEFT;
-////                    break;
-////                case LEFT:
-////                    heading = Heading.UP;
-////                    break;
-////
-////            }
-////        } else {
-////            // Rotate left
-////            switch (heading) {
-////                case UP:
-////                    heading = Heading.LEFT;
-////                    break;
-////                case LEFT:
-////                    heading = Heading.DOWN;
-////                    break;
-////                case DOWN:
-////                    heading = Heading.RIGHT;
-////                    break;
-////                case RIGHT:
-////                    heading = Heading.UP;
-////                    break;
-////            }
-////        }
-//        upBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(!heading.equals(Heading.DOWN)){
-//                    heading = Heading.UP;
-//                }
-//
-//            }
-//        });
-//        leftBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(!heading.equals(Heading.RIGHT)){
-//                    heading = Heading.LEFT;
-//                }
-//
-//            }
-//        });
-//        downBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(!heading.equals(Heading.UP)){
-//                    heading = Heading.DOWN;
-//                }
-//
-//            }
-//        });
-//        rightBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(!heading.equals(Heading.LEFT)){
-//                    heading = Heading.RIGHT;
-//                }
-//
-//            }
-//        });
-//
-//
-//    }
 
 
 public Heading getHeading(){

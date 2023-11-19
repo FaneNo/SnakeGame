@@ -5,8 +5,6 @@ import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.Button;
 
 
 class SnakeGame extends SurfaceView implements Runnable{
@@ -139,5 +137,8 @@ class SnakeGame extends SurfaceView implements Runnable{
     }
     public NewGameNupdate getGameUpdate(){
         return gameUpdate;
+    }
+    public GameState getState(){
+        return state;
     }
 }

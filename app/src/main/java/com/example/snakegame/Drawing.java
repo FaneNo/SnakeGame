@@ -21,6 +21,8 @@ public class Drawing  {
 
         if(surfaceHolder.getSurface().isValid()){
             canvas = surfaceHolder.lockCanvas();
+
+
             // Fill the screen with a color
             canvas.drawColor(Color.argb(255, 26, 128, 182));
 

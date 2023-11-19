@@ -9,7 +9,9 @@ import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageButton;
 
@@ -17,9 +19,12 @@ public class SnakeActivity extends Activity {
 
     // Declare an instance of SnakeGame
     SnakeGame mSnakeGame;
+    GameState gameState;
+    ImageView imageView;
 
-
-
+    private Button pauseBtn;
+    private Button resumeBtn;
+    TextView textView;
 
     // Set the game up
     @Override
@@ -49,6 +54,10 @@ public class SnakeActivity extends Activity {
         final Button downBtn = findViewById(R.id.downBtn);
         final Button leftBtn = findViewById(R.id.leftBtn);
         final Button rightBtn = findViewById(R.id.rightBtn);
+        pauseBtn = findViewById(R.id.pauseBtn);
+        resumeBtn = findViewById(R.id.resume);
+
+
 
         upBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +96,29 @@ public class SnakeActivity extends Activity {
         });
 
 
+
+        pauseBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                mSnakeGame.pause();
+                pauseBtn.setVisibility(View.INVISIBLE);
+                resumeBtn.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        resumeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSnakeGame.resume();
+                pauseBtn.setVisibility(View.VISIBLE);
+                resumeBtn.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+
     }
 
 
@@ -96,6 +128,9 @@ public class SnakeActivity extends Activity {
     protected void onResume() {
         super.onResume();
         mSnakeGame.resume();
+        pauseBtn.setVisibility(View.VISIBLE);
+        resumeBtn.setVisibility(View.INVISIBLE);
+
     }
 
     // Stop the thread in snakeEngine
@@ -103,5 +138,11 @@ public class SnakeActivity extends Activity {
     protected void onPause() {
         super.onPause();
         mSnakeGame.pause();
+        pauseBtn.setVisibility(View.VISIBLE);
+        resumeBtn.setVisibility(View.INVISIBLE);
+
+
+
     }
+
 }
