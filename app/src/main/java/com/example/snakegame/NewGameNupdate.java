@@ -20,9 +20,10 @@ public class NewGameNupdate {
         int blockSize = size.x/NUM_BLOCKS_WIDE;
         numBlocksHigh = size.y/blockSize;
         sound = new Sound(context);
-        apple = new Apple(context, new Point(NUM_BLOCKS_WIDE, numBlocksHigh), blockSize);
-        snake = new Snake(context, new Point(NUM_BLOCKS_WIDE, numBlocksHigh), blockSize);
-        control = new Control(context, new Point(NUM_BLOCKS_WIDE, numBlocksHigh), blockSize);
+        //create apple and snake the Point control where the boundary the snake can go and where the apple can spawn
+        apple = new Apple(context, new Point(NUM_BLOCKS_WIDE- 12, numBlocksHigh -1), blockSize);
+        snake = new Snake(context, new Point(NUM_BLOCKS_WIDE - 12, numBlocksHigh), blockSize);
+
     }
 
     public void newGame(){

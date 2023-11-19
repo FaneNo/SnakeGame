@@ -26,7 +26,7 @@
                     android:visibility="visible"
                     android:layout_marginTop="175dp"
                     android:layout_marginLeft="670dp"
-                   />
+                    />
 
                 <Button
                     android:id="@+id/rightBtn"
@@ -92,30 +92,6 @@
                     android:layout_marginTop="50dp"
                     android:layout_marginLeft="645dp"/>
 
-<!--                <Button-->
-<!--                    android:id="@+id/playagain"-->
-<!--                    android:layout_width="150dp"-->
-<!--                    android:layout_height="80dp"-->
-<!--                    android:background="@color/red"-->
-<!--                    android:text="Game Over ! Play Again"-->
-<!--                    android:textAlignment="center"-->
-<!--                    android:textSize="20dp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    tools:ignore="MissingConstraints"-->
-<!--                    tools:layout_editor_absoluteX="34dp"-->
-<!--                    tools:layout_editor_absoluteY="16dp"/>-->
-
-<!--                <Button-->
-<!--                    android:id="@+id/resume"-->
-<!--                    android:layout_width="150dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@color/material_dynamic_neutral10"-->
-<!--                    android:text="Resume Game"-->
-<!--                    android:textAlignment="center"-->
-<!--                    tools:ignore="MissingConstraints"-->
-<!--                    tools:layout_editor_absoluteX="34dp"-->
-<!--                    tools:layout_editor_absoluteY="211dp"/>-->
-
 
 
                 <TextView
@@ -143,6 +119,8 @@
                     />
 
 
+
         </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
