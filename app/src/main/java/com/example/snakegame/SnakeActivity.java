@@ -24,7 +24,10 @@ public class SnakeActivity extends Activity {
 
     private Button pauseBtn;
     private Button resumeBtn;
-    TextView textView;
+    private TextView pauseText;
+
+
+    private  Drawing drawing;
 
     // Set the game up
     @Override
@@ -41,8 +44,6 @@ public class SnakeActivity extends Activity {
 
         // Create a new instance of the SnakeEngine class
         mSnakeGame = new SnakeGame(this, size);
-        // Make snakeEngine the view of the Activity
-//        setContentView(mSnakeGame);
 
 
         //make this the main view
@@ -57,6 +58,7 @@ public class SnakeActivity extends Activity {
         pauseBtn = findViewById(R.id.pauseBtn);
         resumeBtn = findViewById(R.id.resume);
 
+        pauseText= findViewById(R.id.pauseText);
 
 
         upBtn.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +106,7 @@ public class SnakeActivity extends Activity {
                 mSnakeGame.pause();
                 pauseBtn.setVisibility(View.INVISIBLE);
                 resumeBtn.setVisibility(View.VISIBLE);
+                pauseText.setVisibility(View.VISIBLE);
 
             }
         });
@@ -114,6 +117,7 @@ public class SnakeActivity extends Activity {
                 mSnakeGame.resume();
                 pauseBtn.setVisibility(View.VISIBLE);
                 resumeBtn.setVisibility(View.INVISIBLE);
+                pauseText.setVisibility(View.INVISIBLE);
 
             }
         });
@@ -128,8 +132,8 @@ public class SnakeActivity extends Activity {
     protected void onResume() {
         super.onResume();
         mSnakeGame.resume();
-        pauseBtn.setVisibility(View.VISIBLE);
-        resumeBtn.setVisibility(View.INVISIBLE);
+        pauseText.setVisibility(View.INVISIBLE);
+
 
     }
 
@@ -138,9 +142,6 @@ public class SnakeActivity extends Activity {
     protected void onPause() {
         super.onPause();
         mSnakeGame.pause();
-        pauseBtn.setVisibility(View.VISIBLE);
-        resumeBtn.setVisibility(View.INVISIBLE);
-
 
 
     }

@@ -1,10 +1,13 @@
 package com.example.snakegame;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 class SnakeGame extends SurfaceView implements Runnable{
@@ -19,9 +22,8 @@ class SnakeGame extends SurfaceView implements Runnable{
     private Drawing drawing;
     private GameState state;
     private NewGameNupdate gameUpdate;
-
-
-
+    private TextView scoreView;
+    private Button highScoreView;
 
     // This is the constructor method that gets called
     // from SnakeActivity
@@ -39,31 +41,18 @@ class SnakeGame extends SurfaceView implements Runnable{
         drawing = new Drawing(mSurfaceHolder);
         // Call the constructors of our two game objects
         gameUpdate = new NewGameNupdate(context,size,state);
-
+        scoreView = ((Activity)context).findViewById(R.id.score);
+        highScoreView = ((Activity)context).findViewById(R.id.highScore);
 
 
     }
 
-    public void newGame(){
-        gameUpdate.newGame();
-    }
-    // Check to see if it is time for an update
-    public boolean updateRequired(){
-        return gameUpdate.updateRequired();
-    }
-    // Update all the game objects
-    public void update(){
-        gameUpdate.update();
-    }
 
-    public int getScore(){
-        return gameUpdate.getScore();
-    }
 
 
     //this part will do the drawing
     public void draw(){
-        drawing.draw(state.isPaused(), getScore(),gameUpdate.getApple(),gameUpdate.getSnake(), getResources().getString(R.string.tap_to_play),gameUpdate.getControl());
+        drawing.draw(state.isPaused(), getScore(),gameUpdate.getApple(),gameUpdate.getSnake(), getResources().getString(R.string.tap_to_play),gameUpdate.getObstacle());
 
     }
 
@@ -76,6 +65,7 @@ class SnakeGame extends SurfaceView implements Runnable{
                 // Update 10 times a second
                 if (updateRequired()) {
                     update();
+                    updateScoreTextView();
                 }
             }
 
@@ -96,9 +86,6 @@ class SnakeGame extends SurfaceView implements Runnable{
                     return true;
                 }
 
-                // Let the Snake class handle the input
-//                gameUpdate.getSnake().switchHeading(motionEvent);\
-//                gameUpdate.getSnake().switchHeading();
 
                 break;
 
@@ -111,7 +98,20 @@ class SnakeGame extends SurfaceView implements Runnable{
         return true;
     }
 
-
+    //this method will update the score on the main thread
+    //basically sending the request to the UI thread to update the information
+    //since you need permission from the UI keeper to do any updating
+    //The Ui keeper make sure the rule are follow like drawing or changing thing
+    //This let it happen in a safe and orderly manner
+    private void updateScoreTextView(){
+        ((Activity) getContext()).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                scoreView.setText("Score: " + getScore());
+                highScoreView.setText("High Score: " + getHighScore());
+            }
+        });
+    }
 
 
 
@@ -138,7 +138,23 @@ class SnakeGame extends SurfaceView implements Runnable{
     public NewGameNupdate getGameUpdate(){
         return gameUpdate;
     }
-    public GameState getState(){
-        return state;
+
+    private void newGame(){
+        gameUpdate.newGame();
+    }
+    // Check to see if it is time for an update
+    private boolean updateRequired(){
+        return gameUpdate.updateRequired();
+    }
+    // Update all the game objects
+    public void update(){
+        gameUpdate.update();
+    }
+
+    private int getScore(){
+        return gameUpdate.getScore();
+    }
+    private int getHighScore(){
+        return gameUpdate.getHighScore();
     }
 }

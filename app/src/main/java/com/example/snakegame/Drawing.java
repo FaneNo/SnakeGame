@@ -3,12 +3,15 @@ package com.example.snakegame;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.SurfaceHolder;
+import android.widget.TextView;
 
 public class Drawing {
     private Canvas canvas;
     private SurfaceHolder surfaceHolder;
     private Paint paint;
+    private TextView score;
 
     /*
      * Constructor for Drawing class.
@@ -16,17 +19,17 @@ public class Drawing {
      */
     public Drawing(SurfaceHolder surfaceHolder) {
         this.surfaceHolder = surfaceHolder;
+
         paint = new Paint();
+
     }
     /*
      * Main draw method that orchestrates rendering of game elements.
      */
-    public void draw(boolean paused, int score, Apple apple, Snake snake, String tapToPlayMessage, Control control) {
+    public void draw(boolean paused, int score, Apple apple, Snake snake, String tapToPlayMessage, Obstacle obstacle) {
         if (surfaceHolder.getSurface().isValid()) {
             canvas = surfaceHolder.lockCanvas();
 
-            // Fill the screen with a color
-            canvas.drawColor(Color.argb(255, 26, 128, 182));
 
             // Set the size and color of the paint for the text
             paint.setColor(Color.argb(255, 255, 255, 255));
@@ -42,6 +45,7 @@ public class Drawing {
 
             apple.draw(canvas, paint);
             snake.draw(canvas, paint);
+            obstacle.draw(canvas,paint);
             // control.draw(canvas, paint);
 
             if (paused) {
@@ -49,11 +53,12 @@ public class Drawing {
             }
 
             surfaceHolder.unlockCanvasAndPost(canvas);
+
         }
     }
 
     /*
-     * Draws the background of the game.
+     * Draws the background color of the game.
      */
     private void drawBackground(Canvas canvas) {
         canvas.drawColor(Color.argb(255, 26, 128, 182));

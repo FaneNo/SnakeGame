@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SnakeActivity">
-        
+
 
         <FrameLayout
             android:id="@+id/container"
@@ -13,114 +13,111 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintVertical_bias="0.0">
 
                 <Button
                     android:id="@+id/upBtn"
-                    android:drawableTop="@drawable/up_arrow"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:background="@android:color/holo_orange_dark"
-                    android:visibility="visible"
-                    android:layout_marginTop="175dp"
                     android:layout_marginLeft="670dp"
-                    />
+                    android:layout_marginTop="175dp"
+                    android:background="@android:color/holo_orange_dark"
+                    android:drawableTop="@drawable/up_arrow"
+                    android:visibility="visible" />
 
                 <Button
                     android:id="@+id/rightBtn"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
+                    android:layout_marginLeft="725dp"
+                    android:layout_marginTop="225dp"
                     android:background="@android:color/holo_orange_dark"
                     android:text="Right"
-                    tools:ignore="MissingConstraints"
-                    android:layout_marginTop="225dp"
-                    android:layout_marginLeft="725dp"
-                    />
+                    tools:ignore="MissingConstraints" />
 
                 <Button
                     android:id="@+id/downBtn"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
+                    android:layout_marginLeft="670dp"
+                    android:layout_marginTop="275dp"
                     android:background="@android:color/holo_orange_dark"
                     android:text="Down"
-                    tools:ignore="MissingConstraints"
-                    android:layout_marginTop="275dp"
-                    android:layout_marginLeft="670dp"
-                    />
+                    tools:ignore="MissingConstraints" />
+
                 <Button
                     android:id="@+id/leftBtn"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
+                    android:layout_marginLeft="615dp"
+                    android:layout_marginTop="225dp"
                     android:background="@android:color/holo_orange_dark"
                     android:text="Left"
-                    tools:ignore="MissingConstraints"
-                    android:layout_marginTop="225dp"
-                    android:layout_marginLeft="615dp"/>
+                    tools:ignore="MissingConstraints" />
 
 
                 <Button
                     android:id="@+id/resume"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
+                    android:layout_marginLeft="670dp"
+                    android:layout_marginTop="225dp"
                     android:background="@android:color/holo_orange_dark"
                     android:text="resume"
-                    tools:ignore="MissingConstraints"
-                    android:layout_marginTop="225dp"
-                    android:layout_marginLeft="670dp"
-                    />
+                    tools:ignore="MissingConstraints" />
 
                 <Button
                     android:id="@+id/pauseBtn"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
+                    android:layout_marginLeft="670dp"
+                    android:layout_marginTop="225dp"
                     android:background="@android:color/holo_orange_dark"
                     android:text="pause"
-                    tools:ignore="MissingConstraints"
-                    android:layout_marginTop="225dp"
-                    android:layout_marginLeft="670dp"
-                    />
+                    tools:ignore="MissingConstraints" />
 
                 <Button
-                    android:id="@+id/new_game"
+                    android:id="@+id/highScore"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:background="@color/material_dynamic_neutral10"
-                    android:text="New Game"
-                    tools:ignore="MissingConstraints"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginLeft="645dp"/>
-
-
-
-                <TextView
-                    android:id="@+id/score"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/darker_gray"
-                    android:text="score"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="140dp"
-                    android:layout_marginLeft="645dp"/>
-
-                <TextView
-                    android:id="@+id/pauseText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Paused"
-                    android:textSize="32dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="180dp"
-                    android:layout_marginLeft="200dp"
-
-                    />
-
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="645dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@android:color/holo_orange_dark"
+                    android:gravity="left"
+                    android:text="HS:"
+                    tools:ignore="MissingConstraints" />
 
 
         </FrameLayout>
 
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="645dp"
+            android:layout_marginTop="130dp"
+            android:background="@android:color/holo_orange_dark"
+            android:text="score"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pauseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paused"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/container"
+            app:layout_constraintEnd_toEndOf="@+id/container"
+            app:layout_constraintStart_toStartOf="@+id/container"
+            app:layout_constraintTop_toTopOf="@+id/container"
+            tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
