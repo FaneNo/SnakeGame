@@ -3,6 +3,7 @@ package com.example.snakegame;
 import android.content.Context;
 import android.graphics.Point;
 import android.view.SurfaceView;
+import android.widget.TextView;
 
 public class NewGameNupdate {
     private Snake snake;
@@ -13,7 +14,9 @@ public class NewGameNupdate {
     private int numBlocksHigh;
     private long nextFrameTime;
     private GameState state;
-    private Control control;
+    private Obstacle obstacle;
+    private int highScore = 0;
+
     public NewGameNupdate(Context context, Point size, GameState state){
 
         this.state = state;
@@ -23,12 +26,14 @@ public class NewGameNupdate {
         //create apple and snake the Point control where the boundary the snake can go and where the apple can spawn
         apple = new Apple(context, new Point(NUM_BLOCKS_WIDE- 12, numBlocksHigh -1), blockSize);
         snake = new Snake(context, new Point(NUM_BLOCKS_WIDE - 12, numBlocksHigh), blockSize);
+        obstacle = new Obstacle(context,new Point(NUM_BLOCKS_WIDE- 12, numBlocksHigh -1), blockSize);
 
     }
 
     public void newGame(){
         snake.reset(NUM_BLOCKS_WIDE, numBlocksHigh);
         apple.spawn();
+        obstacle.spawn();
         score = 0;
         nextFrameTime = System.currentTimeMillis();
     }
@@ -65,16 +70,20 @@ public class NewGameNupdate {
             // This reminds me of Edge of Tomorrow.
             // One day the apple will be ready!
             apple.spawn();
+            obstacle.spawn();
 
             // Add to  mScore
             score += 1;
+            if(score > highScore){
+                highScore = score;
+            }
 
             // Play a sound
             sound.playEatSound();
         }
 
         // Did the snake die?
-        if (snake.detectDeath()) {
+        if (snake.detectDeath() || snake.checkDinner(obstacle.getLocation())) {
             // Pause the game ready to start again
             sound.playCrashSound();
             state.setPaused(true);
@@ -84,14 +93,15 @@ public class NewGameNupdate {
     public Snake getSnake() {
         return snake;
     }
-    public Control getControl() {
-        return control;
-    }
+
 
     public Apple getApple() {
         return apple;
     }
-
+    public Obstacle getObstacle() {return obstacle;}
+    public int getHighScore(){
+        return highScore;
+    }
     public int getScore() {
         return score;
     }
