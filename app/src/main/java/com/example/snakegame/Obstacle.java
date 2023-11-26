@@ -7,8 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
 
-class Apple {
-
+public class Obstacle {
     // The location of the apple on the grid
     // Not in pixels
     private Point location = new Point();
@@ -19,24 +18,24 @@ class Apple {
     private int mSize;
 
     // An image to represent the apple
-    private Bitmap mBitmapApple;
+    private Bitmap mBitmapObstacle;
 
     private ObjectSpawn objectSpawn;
     /// Set up the apple in the constructor
-    Apple(Context context, Point sr, int s){
+    Obstacle(Context context, Point sr, int s){
 
         // Make a note of the passed in spawn range
         mSpawnRange = sr;
-        // Make a note of the size of an apple
+        // Make a note of the size of an obstacle
         mSize = s;
         // Hide the apple off-screen until the game starts
-        location.x = -10;
+        location.x = -100;
 
         // Load the image to the bitmap
-        mBitmapApple = BitmapFactory.decodeResource(context.getResources(), R.drawable.apple);
+        mBitmapObstacle = BitmapFactory.decodeResource(context.getResources(), R.drawable.obstacle);
 
         // Resize the bitmap
-        mBitmapApple = Bitmap.createScaledBitmap(mBitmapApple, s, s, false);
+        mBitmapObstacle = Bitmap.createScaledBitmap(mBitmapObstacle, s, s, false);
 
         objectSpawn = new ObjectSpawn(mSpawnRange);
     }
@@ -54,11 +53,10 @@ class Apple {
         return location;
     }
 
-    // Draw the apple
+    // Draw the obstacle
     void draw(Canvas canvas, Paint paint){
-        canvas.drawBitmap(mBitmapApple,
+        canvas.drawBitmap(mBitmapObstacle,
                 location.x * mSize, location.y * mSize, paint);
 
     }
-
 }

@@ -1,115 +1,59 @@
 package com.example.snakegame;
 
-import android.app.GameManager;
-import android.app.GameState;
+import android.app.Activity;
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Point;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.SoundPool;
-import android.os.Build;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import java.io.IOException;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 class SnakeGame extends SurfaceView implements Runnable{
 
     // Objects for the game loop/thread
     private Thread mThread = null;
-    // Control pausing between updates
-    private long mNextFrameTime;
-    // Is the game currently playing and or paused?
-    private volatile boolean mPlaying = false;
-    private volatile boolean mPaused = true;
-
-    // for playing sound effects
-    private SoundPool mSP;
-    
-    private int mEat_ID = -1;
-    private int mCrashID = -1;
-
     // The size in segments of the playable area
-    private final int NUM_BLOCKS_WIDE = 40;
-    private int mNumBlocksHigh;
 
-    // How many points does the player have
-    private int mScore;
-
-    // Objects for drawing
-    private Canvas mCanvas;
     private SurfaceHolder mSurfaceHolder;
-    private Paint mPaint;
-
-    // A snake ssss
-    private Snake mSnake;
-    // And an apple
-    private Apple mApple;
 
     private Sound sound;
     private Drawing drawing;
-    private gameState state;
-    private newGameNupdate gameUpdate;
+    private GameState state;
+    private NewGameNupdate gameUpdate;
+    private TextView scoreView;
+    private Button highScoreView;
+
     // This is the constructor method that gets called
     // from SnakeActivity
     public SnakeGame(Context context, Point size) {
         super(context);
 
-        // Work out how many pixels each block is
-        int blockSize = size.x / NUM_BLOCKS_WIDE;
-        // How many blocks of the same size will fit into the height
-        mNumBlocksHigh = size.y / blockSize;
 
         sound = new Sound(context);
-
         //Initialize playing/paused game state
-        state = new gameState();
+        state = new GameState();
 
         // Initialize the drawing objects
         mSurfaceHolder = getHolder();
 
         drawing = new Drawing(mSurfaceHolder);
         // Call the constructors of our two game objects
-//        mApple = new Apple(context,
-//                new Point(NUM_BLOCKS_WIDE,
-//                        mNumBlocksHigh),
-//                blockSize);
-//
-//        mSnake = new Snake(context,
-//                new Point(NUM_BLOCKS_WIDE,
-//                        mNumBlocksHigh),
-//                blockSize);
-        gameUpdate = new newGameNupdate(context,size,state);
+        gameUpdate = new NewGameNupdate(context,size,state);
+        scoreView = ((Activity)context).findViewById(R.id.score);
+        highScoreView = ((Activity)context).findViewById(R.id.highScore);
+
 
     }
 
-    public void newGame(){
-        gameUpdate.newGame();
-    }
-    // Check to see if it is time for an update
-    public boolean updateRequired(){
-        return gameUpdate.updateRequired();
-    }
-    // Update all the game objects
-    public void update(){
-        gameUpdate.update();
-    }
 
-    public int getScore(){
-        return gameUpdate.getScore();
-    }
 
 
     //this part will do the drawing
     public void draw(){
-        drawing.draw(state.isPaused(), getScore(),gameUpdate.getApple(),gameUpdate.getSnake(), getResources().getString(R.string.tap_to_play));
+        drawing.draw(state.isPaused(), getScore(),gameUpdate.getApple(),gameUpdate.getSnake(), getResources().getString(R.string.tap_to_play),gameUpdate.getObstacle());
+
     }
 
 
@@ -121,6 +65,7 @@ class SnakeGame extends SurfaceView implements Runnable{
                 // Update 10 times a second
                 if (updateRequired()) {
                     update();
+                    updateScoreTextView();
                 }
             }
 
@@ -141,9 +86,10 @@ class SnakeGame extends SurfaceView implements Runnable{
                     return true;
                 }
 
-                // Let the Snake class handle the input
-                gameUpdate.getSnake().switchHeading(motionEvent);
+
                 break;
+
+
 
             default:
                 break;
@@ -151,6 +97,22 @@ class SnakeGame extends SurfaceView implements Runnable{
         }
         return true;
     }
+
+    //this method will update the score on the main thread
+    //basically sending the request to the UI thread to update the information
+    //since you need permission from the UI keeper to do any updating
+    //The Ui keeper make sure the rule are follow like drawing or changing thing
+    //This let it happen in a safe and orderly manner
+    private void updateScoreTextView(){
+        ((Activity) getContext()).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                scoreView.setText("Score: " + getScore());
+                highScoreView.setText("High Score: " + getHighScore());
+            }
+        });
+    }
+
 
 
 
@@ -172,5 +134,27 @@ class SnakeGame extends SurfaceView implements Runnable{
         state.setPlaying(true);
         mThread = new Thread(this);
         mThread.start();
+    }
+    public NewGameNupdate getGameUpdate(){
+        return gameUpdate;
+    }
+
+    private void newGame(){
+        gameUpdate.newGame();
+    }
+    // Check to see if it is time for an update
+    private boolean updateRequired(){
+        return gameUpdate.updateRequired();
+    }
+    // Update all the game objects
+    public void update(){
+        gameUpdate.update();
+    }
+
+    private int getScore(){
+        return gameUpdate.getScore();
+    }
+    private int getHighScore(){
+        return gameUpdate.getHighScore();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.snakegame;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,10 +9,19 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageButton;
 
 import java.util.ArrayList;
 
-class Snake {
+class Snake extends SnakeActivity implements SurfaceHolder.Callback {
 
     // The location in the grid of all the segments
     private ArrayList<Point> segmentLocations;
@@ -25,9 +35,14 @@ class Snake {
     // Where is the centre of the screen
     // horizontally in pixels?
     private int halfWayPoint;
+    private SurfaceView surfaceView;
+    private TextView textView;
+
+
+
 
     // For tracking movement Heading
-    private enum Heading {
+    public static enum Heading {
         UP, RIGHT, DOWN, LEFT
     }
 
@@ -44,6 +59,21 @@ class Snake {
     private Bitmap mBitmapBody;
 
 
+    @Override
+    public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
+
+    }
+
+    @Override
+    public void surfaceChanged(@NonNull SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
+
+    }
+
     Snake(Context context, Point mr, int ss) {
 
         // Initialize our ArrayList
@@ -53,6 +83,7 @@ class Snake {
         // range from the passed in parameters
         mSegmentSize = ss;
         mMoveRange = mr;
+
 
         // Create and scale the bitmaps
         mBitmapHeadRight = BitmapFactory
@@ -206,6 +237,7 @@ class Snake {
     }
 
     void draw(Canvas canvas, Paint paint) {
+        paint.setAntiAlias(true);
 
         // Don't run this code if ArrayList has nothing in it
         if (!segmentLocations.isEmpty()) {
@@ -256,44 +288,21 @@ class Snake {
         }
     }
 
+    public void switchHeading(Heading heading) {
+//      Is the tap on the right hand side?
+        this.heading = heading;
 
-    // Handle changing direction
-    void switchHeading(MotionEvent motionEvent) {
 
-        // Is the tap on the right hand side?
-        if (motionEvent.getX() >= halfWayPoint) {
-            switch (heading) {
-                // Rotate right
-                case UP:
-                    heading = Heading.RIGHT;
-                    break;
-                case RIGHT:
-                    heading = Heading.DOWN;
-                    break;
-                case DOWN:
-                    heading = Heading.LEFT;
-                    break;
-                case LEFT:
-                    heading = Heading.UP;
-                    break;
-
-            }
-        } else {
-            // Rotate left
-            switch (heading) {
-                case UP:
-                    heading = Heading.LEFT;
-                    break;
-                case LEFT:
-                    heading = Heading.DOWN;
-                    break;
-                case DOWN:
-                    heading = Heading.RIGHT;
-                    break;
-                case RIGHT:
-                    heading = Heading.UP;
-                    break;
-            }
-        }
     }
+
+
+
+public Heading getHeading(){
+        return heading;
 }
+
+
+
+}
+
+
