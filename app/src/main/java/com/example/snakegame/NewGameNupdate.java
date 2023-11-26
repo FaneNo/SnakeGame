@@ -10,6 +10,8 @@ public class NewGameNupdate {
     private final int NUM_BLOCKS_WIDE = 40;
     private Apple apple;
     private Sound sound;
+
+    private Gapple gapple;
     private int score;
     private int numBlocksHigh;
     private long nextFrameTime;
@@ -25,6 +27,7 @@ public class NewGameNupdate {
         sound = new Sound(context);
         //create apple and snake the Point control where the boundary the snake can go and where the apple can spawn
         apple = new Apple(context, new Point(NUM_BLOCKS_WIDE- 12, numBlocksHigh -1), blockSize);
+        gapple = new Gapple(context, new Point(NUM_BLOCKS_WIDE- 12, numBlocksHigh -1), blockSize);
         snake = new Snake(context, new Point(NUM_BLOCKS_WIDE - 12, numBlocksHigh), blockSize);
         obstacle = new Obstacle(context,new Point(NUM_BLOCKS_WIDE- 12, numBlocksHigh -1), blockSize);
 
@@ -33,6 +36,7 @@ public class NewGameNupdate {
     public void newGame(){
         snake.reset(NUM_BLOCKS_WIDE, numBlocksHigh);
         apple.spawn();
+        gapple.spawn();
         obstacle.spawn();
         score = 0;
         nextFrameTime = System.currentTimeMillis();
@@ -81,6 +85,21 @@ public class NewGameNupdate {
             // Play a sound
             sound.playEatSound();
         }
+        if(snake.checkDinner(gapple.getLocation())){
+            // This reminds me of Edge of Tomorrow.
+            // One day the apple will be ready!
+            gapple.spawn();
+            obstacle.spawn();
+
+            // Add to  mScore
+            score += 3;
+            if(score > highScore){
+                highScore = score;
+            }
+
+            // Play a sound
+            sound.playEatSound();
+        }
 
         // Did the snake die?
         if (snake.detectDeath() || snake.checkDinner(obstacle.getLocation())) {
@@ -97,6 +116,9 @@ public class NewGameNupdate {
 
     public Apple getApple() {
         return apple;
+    }
+    public Gapple getGapple() {
+        return gapple;
     }
     public Obstacle getObstacle() {return obstacle;}
     public int getHighScore(){

@@ -52,7 +52,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     //this part will do the drawing
     public void draw(){
-        drawing.draw(state.isPaused(), getScore(),gameUpdate.getApple(),gameUpdate.getSnake(), getResources().getString(R.string.tap_to_play),gameUpdate.getObstacle());
+        drawing.draw(state.isPaused(), getScore(),gameUpdate.getApple(),gameUpdate.getGapple(),gameUpdate.getSnake(), getResources().getString(R.string.tap_to_play),gameUpdate.getObstacle());
 
     }
 
