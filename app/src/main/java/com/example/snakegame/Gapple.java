@@ -47,6 +47,11 @@ class Gapple {
         location.y = random.nextInt(mSpawnRange.y - 1) + 1;
     }
 
+    void move(){
+        location.x = -1;
+        location.y = -1;
+    }
+
     // Let SnakeGame know where the green apple is
     // SnakeGame can share this with the snake
     Point getLocation(){

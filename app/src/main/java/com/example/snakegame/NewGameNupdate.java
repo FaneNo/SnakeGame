@@ -90,12 +90,13 @@ public class NewGameNupdate {
         }
 
         if(snake.checkDinner(gapple.getLocation())){
+            gapple.move();
 
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    //Do something after 100ms
+                    //Do something after 5000ms
                     gapple.spawn();
                 }
             }, 5000);
