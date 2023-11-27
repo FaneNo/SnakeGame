@@ -4,6 +4,9 @@ import android.content.Context;
 import android.graphics.Point;
 import android.view.SurfaceView;
 import android.widget.TextView;
+import android.os.*;
+
+import java.util.ArrayList;
 
 public class NewGameNupdate {
     private Snake snake;
@@ -85,10 +88,18 @@ public class NewGameNupdate {
             // Play a sound
             sound.playEatSound();
         }
+
         if(snake.checkDinner(gapple.getLocation())){
-            // This reminds me of Edge of Tomorrow.
-            // One day the apple will be ready!
-            gapple.spawn();
+
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //Do something after 100ms
+                    gapple.spawn();
+                }
+            }, 5000);
+
             obstacle.spawn();
 
             // Add to  mScore

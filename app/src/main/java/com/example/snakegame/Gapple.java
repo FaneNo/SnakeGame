@@ -22,12 +22,12 @@ class Gapple {
     // An image to represent the apple
     private Bitmap mBitmapGapple;
 
-    /// Set up the apple in the constructor
+    /// Set up the green apple in the constructor
     Gapple(Context context, Point sr, int s){
 
         // Make a note of the passed in spawn range
         mSpawnRange = sr;
-        // Make a note of the size of an apple
+        // Make a note of the size of a green apple
         mSize = s;
         // Hide the apple off-screen until the game starts
         location.x = -10;
@@ -39,7 +39,7 @@ class Gapple {
         mBitmapGapple = Bitmap.createScaledBitmap(mBitmapGapple, s, s, false);
     }
 
-    // This is called every time an apple is eaten
+    // This is called every time a green apple is eaten
     void spawn(){
         // Choose two random values and place the apple
         Random random = new Random();
@@ -47,7 +47,7 @@ class Gapple {
         location.y = random.nextInt(mSpawnRange.y - 1) + 1;
     }
 
-    // Let SnakeGame know where the apple is
+    // Let SnakeGame know where the green apple is
     // SnakeGame can share this with the snake
     Point getLocation(){
         return location;
