@@ -88,10 +88,11 @@ public class NewGameNupdate {
             // Play a sound
             sound.playEatSound();
         }
-
+        //Did the head of the snake eat the Green Apple?
         if(snake.checkDinner(gapple.getLocation())){
             gapple.move();
-
+            snake.addsegment();
+            //this handler adds a delay when the green apple is eaten
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {
                 @Override

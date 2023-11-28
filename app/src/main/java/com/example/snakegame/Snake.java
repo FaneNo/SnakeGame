@@ -236,6 +236,10 @@ class Snake extends SnakeActivity implements SurfaceHolder.Callback {
         return false;
     }
 
+    void addsegment(){
+        segmentLocations.add(new Point(-10, -10));
+    }
+
     void draw(Canvas canvas, Paint paint) {
         paint.setAntiAlias(true);
 

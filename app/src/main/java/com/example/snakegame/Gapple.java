@@ -48,8 +48,7 @@ class Gapple {
     }
 
     void move(){
-        location.x = -1;
-        location.y = -1;
+        location.x = -10;
     }
 
     // Let SnakeGame know where the green apple is
