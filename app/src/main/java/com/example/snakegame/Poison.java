@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import java.util.Random;
 
-class Gapple {
+class Poison {
 
     // The location of the apple on the grid
     // Not in pixels
@@ -20,10 +20,10 @@ class Gapple {
     private int mSize;
 
     // An image to represent the apple
-    private Bitmap mBitmapGapple;
+    private Bitmap mBitmapPoison;
 
     /// Set up the green apple in the constructor
-    Gapple(Context context, Point sr, int s){
+    Poison(Context context, Point sr, int s){
 
         // Make a note of the passed in spawn range
         mSpawnRange = sr;
@@ -33,10 +33,10 @@ class Gapple {
         location.x = -10;
 
         // Load the image to the bitmap
-        mBitmapGapple = BitmapFactory.decodeResource(context.getResources(), R.drawable.gapple);
+        mBitmapPoison = BitmapFactory.decodeResource(context.getResources(), R.drawable.poison);
 
         // Resize the bitmap
-        mBitmapGapple = Bitmap.createScaledBitmap(mBitmapGapple, s, s, false);
+        mBitmapPoison = Bitmap.createScaledBitmap(mBitmapPoison, s, s, false);
     }
 
     // This is called every time a green apple is eaten
@@ -57,9 +57,9 @@ class Gapple {
         return location;
     }
 
-    // Draw the Gapple
+    // Draw the Bottle of Poison
     void draw(Canvas canvas, Paint paint){
-        canvas.drawBitmap(mBitmapGapple,
+        canvas.drawBitmap(mBitmapPoison,
                 location.x * mSize, location.y * mSize, paint);
 
     }
