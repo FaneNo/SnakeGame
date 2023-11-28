@@ -38,7 +38,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         // Initialize the drawing objects
         mSurfaceHolder = getHolder();
 
-        drawing = new Drawing(mSurfaceHolder);
+        drawing = new Drawing(mSurfaceHolder, size);
         // Call the constructors of our two game objects
         gameUpdate = new NewGameNupdate(context,size,state);
         scoreView = ((Activity)context).findViewById(R.id.score);

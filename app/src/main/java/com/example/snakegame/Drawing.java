@@ -12,15 +12,19 @@ public class Drawing {
     private SurfaceHolder surfaceHolder;
     private Paint paint;
     private TextView score;
+    private Point PlayArea;
+    private Paint playArea;
 
     /*
      * Constructor for Drawing class.
      * Initializes the SurfaceHolder and Paint objects
      */
-    public Drawing(SurfaceHolder surfaceHolder) {
+    public Drawing(SurfaceHolder surfaceHolder, Point Size) {
         this.surfaceHolder = surfaceHolder;
 
         paint = new Paint();
+        playArea = new Paint();
+        PlayArea = Size;
 
     }
     /*
@@ -62,7 +66,16 @@ public class Drawing {
      * Draws the background color of the game.
      */
     private void drawBackground(Canvas canvas) {
-        canvas.drawColor(Color.argb(255, 26, 128, 182));
+        canvas.drawColor(Color.argb(255, 26, 128, 182)); //paint background first
+
+        playArea.setStyle(Paint.Style.FILL);
+        playArea.setColor(Color.argb(255, 0, 0, 170)); //sets color of border
+        canvas.drawRect((PlayArea.x-615),0,0,PlayArea.y,playArea); //draws border
+        playArea.setColor(Color.argb(150, 192, 192, 192)); //set color of play area
+        canvas.drawRect((PlayArea.x-625),10,10,PlayArea.y-75,playArea); //draws play area over border
+
+
+
     }
 
     /*
