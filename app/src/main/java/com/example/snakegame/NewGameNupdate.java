@@ -15,6 +15,7 @@ public class NewGameNupdate {
     private Sound sound;
 
     private Gapple gapple;
+    private Poison poison;
     private int score;
     private int numBlocksHigh;
     private long nextFrameTime;
@@ -33,7 +34,7 @@ public class NewGameNupdate {
         gapple = new Gapple(context, new Point(NUM_BLOCKS_WIDE- 12, numBlocksHigh -1), blockSize);
         snake = new Snake(context, new Point(NUM_BLOCKS_WIDE - 12, numBlocksHigh), blockSize);
         obstacle = new Obstacle(context,new Point(NUM_BLOCKS_WIDE- 12, numBlocksHigh -1), blockSize);
-
+        poison = new Poison(context, new Point(NUM_BLOCKS_WIDE -12, numBlocksHigh -1), blockSize);
     }
 
     public void newGame(){
@@ -41,6 +42,7 @@ public class NewGameNupdate {
         apple.spawn();
         gapple.spawn();
         obstacle.spawn();
+        poison.spawn();
         score = 0;
         nextFrameTime = System.currentTimeMillis();
     }
@@ -113,6 +115,21 @@ public class NewGameNupdate {
             // Play a sound
             sound.playEatSound();
         }
+        if(snake.checkDinner(poison.getLocation())){
+            poison.move();
+            //this handler adds a delay when the green apple is eaten
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //Do something after 5000ms
+                    poison.spawn();
+                }
+            }, 3000);
+            // Play a sound
+            sound.playEatSound();
+        }
+
 
         // Did the snake die?
         if (snake.detectDeath() || snake.checkDinner(obstacle.getLocation())) {
@@ -132,6 +149,9 @@ public class NewGameNupdate {
     }
     public Gapple getGapple() {
         return gapple;
+    }
+    public Poison getPoison(){
+        return poison;
     }
     public Obstacle getObstacle() {return obstacle;}
     public int getHighScore(){

@@ -26,7 +26,7 @@ public class Drawing {
     /*
      * Main draw method that orchestrates rendering of game elements.
      */
-    public void draw(boolean paused, int score, Apple apple,Gapple gapple, Snake snake, String tapToPlayMessage, Obstacle obstacle) {
+    public void draw(boolean paused, int score, Apple apple,Gapple gapple, Poison poison, Snake snake, String tapToPlayMessage, Obstacle obstacle) {
         if (surfaceHolder.getSurface().isValid()) {
             canvas = surfaceHolder.lockCanvas();
 
@@ -47,6 +47,7 @@ public class Drawing {
             gapple.draw(canvas,paint);
             snake.draw(canvas, paint);
             obstacle.draw(canvas,paint);
+            poison.draw(canvas, paint);
             // control.draw(canvas, paint);
 
             if (paused) {
