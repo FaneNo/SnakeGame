@@ -117,17 +117,17 @@ public class NewGameNupdate {
         }
         if(snake.checkDinner(poison.getLocation())){
             poison.move();
-            //this handler adds a delay when the green apple is eaten
+            //this handler adds a delay when the poison is drank
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    //Do something after 5000ms
+                    //Do something after 3000ms
                     poison.spawn();
                 }
             }, 3000);
             // Play a sound
-            sound.playEatSound();
+            sound.playDrinkSound();
         }
 
 

@@ -61,6 +61,7 @@ class SnakeGame extends SurfaceView implements Runnable{
     @Override
     public void run() {
         while (state.isPlaying()) {
+
             if(!state.isPaused()) {
                 // Update 10 times a second
                 if (updateRequired()) {
