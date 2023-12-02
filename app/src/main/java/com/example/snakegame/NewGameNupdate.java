@@ -8,7 +8,7 @@ import android.os.*;
 
 import java.util.ArrayList;
 
-public class NewGameNupdate {
+public class NewGameNupdate implements Update{
     private Snake snake;
     private final int NUM_BLOCKS_WIDE = 40;
     private Apple apple;
@@ -36,7 +36,7 @@ public class NewGameNupdate {
         obstacle = new Obstacle(context,new Point(NUM_BLOCKS_WIDE- 12, numBlocksHigh -1), blockSize);
         poison = new Poison(context, new Point(NUM_BLOCKS_WIDE -12, numBlocksHigh -1), blockSize);
     }
-
+    @Override
     public void newGame(){
         snake.reset(NUM_BLOCKS_WIDE, numBlocksHigh);
         apple.spawn();
@@ -46,7 +46,7 @@ public class NewGameNupdate {
         score = 0;
         nextFrameTime = System.currentTimeMillis();
     }
-
+    @Override
     public boolean updateRequired() {
 
         // Run at 10 frames per second
@@ -69,6 +69,7 @@ public class NewGameNupdate {
 
         return false;
     }
+    @Override
     public void update() {
 
         // Move the snake
@@ -139,24 +140,30 @@ public class NewGameNupdate {
         }
 
     }
+    @Override
     public Snake getSnake() {
         return snake;
     }
 
-
+    @Override
     public Apple getApple() {
         return apple;
     }
+    @Override
     public Gapple getGapple() {
         return gapple;
     }
+    @Override
     public Poison getPoison(){
         return poison;
     }
+    @Override
     public Obstacle getObstacle() {return obstacle;}
+    @Override
     public int getHighScore(){
         return highScore;
     }
+    @Override
     public int getScore() {
         return score;
     }
