@@ -7,16 +7,16 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
-
 import java.io.IOException;
 
 public class Sound {
     private SoundPool mSP;
     private int mEat_ID = -1;
     private int mCrashID = -1;
-    private int mBGMID = -1;
     private int mDrinkID = -1;
+
     public Sound(Context context) {
         // Initialize the SoundPool
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -46,14 +46,12 @@ public class Sound {
 
             descriptor = assetManager.openFd("drink.wav");
             mDrinkID = mSP.load(descriptor, 0);
-
-            descriptor = assetManager.openFd("bgm.wav");
-            mBGMID = mSP.load(descriptor, 0);
         } catch (IOException e) {
             // Handle error
             Log.d("error", "failed to load sound files");
         }
     }
+
     public void playEatSound() {
         Log.d("SoundManager", "Playing eat sound");
         mSP.play(mEat_ID, 1, 1, 0, 0, 1);
@@ -63,12 +61,9 @@ public class Sound {
         Log.d("SoundManager", "Playing crash sound");
         mSP.play(mCrashID, 1, 1, 0, 0, 1);
     }
+
     public void playDrinkSound() {
         Log.d("SoundManager", "Playing drinking sound");
         mSP.play(mDrinkID, 10, 10, 0, 0, 1);
-    }
-    public void playBGM() {
-        Log.d("SoundManager", "Playing BGM");
-        mSP.play(mBGMID, 1, 1, 0, 10, 1);
     }
 }

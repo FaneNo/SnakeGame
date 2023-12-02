@@ -3,6 +3,7 @@ package com.example.snakegame;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import android.view.Display;
@@ -12,7 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import android.media.MediaPlayer;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 
 public class SnakeActivity extends Activity {
@@ -25,6 +27,7 @@ public class SnakeActivity extends Activity {
     private Button pauseBtn;
     private Button resumeBtn;
     private TextView pauseText;
+    private MediaPlayer mediaPlayer;
 
 
     private  Drawing drawing;
@@ -34,6 +37,8 @@ public class SnakeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mediaPlayer = MediaPlayer.create(SnakeActivity.this, R.raw.bgm);
+        mediaPlayer.start();
 
         // Get the pixel dimensions of the screen
         Display display = getWindowManager().getDefaultDisplay();

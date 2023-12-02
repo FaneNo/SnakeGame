@@ -25,6 +25,7 @@ class SnakeGame extends SurfaceView implements Runnable{
     private TextView scoreView;
     private Button highScoreView;
 
+
     // This is the constructor method that gets called
     // from SnakeActivity
     public SnakeGame(Context context, Point size) {
@@ -131,7 +132,7 @@ class SnakeGame extends SurfaceView implements Runnable{
 
     // Start the thread
     public void resume() {
-//        mPlaying = true;
+//        mPlaying = true'
         state.setPlaying(true);
         mThread = new Thread(this);
         mThread.start();
