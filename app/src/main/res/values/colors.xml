@@ -5,4 +5,6 @@
     <color name="red">#FD0000</color>
     <color name="green">#3AFF0E</color>
     <color name="transparent">#rrggbb</color>
+    <color name="turquoise"> #59c3c3</color>
+    <color name="Cream"> #fffdd0</color>
 </resources>

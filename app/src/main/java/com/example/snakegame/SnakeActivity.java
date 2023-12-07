@@ -26,7 +26,11 @@ public class SnakeActivity extends Activity {
 
     private Button pauseBtn;
     private Button resumeBtn;
+    private Button highScore;
+    private Button highScore2;
+    private Button restart;
     private TextView pauseText;
+    private RelativeLayout menu;
     private MediaPlayer mediaPlayer;
 
 
@@ -62,9 +66,11 @@ public class SnakeActivity extends Activity {
         final Button rightBtn = findViewById(R.id.rightBtn);
         pauseBtn = findViewById(R.id.pauseBtn);
         resumeBtn = findViewById(R.id.resume);
-
+        highScore = findViewById(R.id.highScore);
         pauseText= findViewById(R.id.pauseText);
-
+        menu = findViewById(R.id.menu);
+        highScore2 = findViewById(R.id.highScore2);
+        restart = findViewById(R.id.restart);
 
         upBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +132,36 @@ public class SnakeActivity extends Activity {
 
             }
         });
+        highScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSnakeGame.pause();
+                menu.setVisibility(View.VISIBLE);
+                highScore.setVisibility(View.INVISIBLE);
+                highScore2.setVisibility(View.VISIBLE);
+            }
 
+        });
+        highScore2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSnakeGame.resume();
+                highScore.setVisibility(View.VISIBLE);
+                highScore2.setVisibility(View.INVISIBLE);
+                menu.setVisibility(View.INVISIBLE);
+            }
+        });
+        restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSnakeGame.newGame();
+                mSnakeGame.resume();
+                highScore.setVisibility(View.VISIBLE);
+                highScore2.setVisibility(View.INVISIBLE);
+                menu.setVisibility(View.INVISIBLE);
+                pauseText.setVisibility(View.INVISIBLE);
+            }
+        });
 
     }
 
@@ -138,6 +173,7 @@ public class SnakeActivity extends Activity {
         super.onResume();
         mSnakeGame.resume();
         pauseText.setVisibility(View.INVISIBLE);
+        menu.setVisibility(View.INVISIBLE);
 
 
     }

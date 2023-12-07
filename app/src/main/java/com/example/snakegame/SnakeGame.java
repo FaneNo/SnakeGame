@@ -24,6 +24,7 @@ class SnakeGame extends SurfaceView implements Runnable{
     private NewGameNupdate gameUpdate;
     private TextView scoreView;
     private Button highScoreView;
+    private Button highScoreView2;
 
 
     // This is the constructor method that gets called
@@ -44,6 +45,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         gameUpdate = new NewGameNupdate(context,size,state);
         scoreView = ((Activity)context).findViewById(R.id.score);
         highScoreView = ((Activity)context).findViewById(R.id.highScore);
+        highScoreView2 = ((Activity)context).findViewById(R.id.highScore2);
 
 
     }
@@ -111,6 +113,7 @@ class SnakeGame extends SurfaceView implements Runnable{
             public void run() {
                 scoreView.setText("Score: " + getScore());
                 highScoreView.setText("High Score: " + getHighScore());
+                highScoreView2.setText("High Score: " + getHighScore());
             }
         });
     }
@@ -141,7 +144,7 @@ class SnakeGame extends SurfaceView implements Runnable{
         return gameUpdate;
     }
 
-    private void newGame(){
+    public void newGame(){
         gameUpdate.newGame();
     }
     // Check to see if it is time for an update
