@@ -24,7 +24,7 @@
                     android:layout_height="45dp"
                     android:layout_marginLeft="670dp"
                     android:layout_marginTop="175dp"
-                    android:background="@android:color/holo_orange_dark"
+                    android:background="@color/turquoise"
                     android:drawableTop="@drawable/up_arrow"
                     android:visibility="visible" />
 
@@ -34,7 +34,7 @@
                     android:layout_height="45dp"
                     android:layout_marginLeft="725dp"
                     android:layout_marginTop="225dp"
-                    android:background="@android:color/holo_orange_dark"
+                    android:background="@color/turquoise"
                     android:text="Right"
                     tools:ignore="MissingConstraints" />
 
@@ -44,7 +44,7 @@
                     android:layout_height="45dp"
                     android:layout_marginLeft="670dp"
                     android:layout_marginTop="275dp"
-                    android:background="@android:color/holo_orange_dark"
+                    android:background="@color/turquoise"
                     android:text="Down"
                     tools:ignore="MissingConstraints" />
 
@@ -54,7 +54,7 @@
                     android:layout_height="45dp"
                     android:layout_marginLeft="615dp"
                     android:layout_marginTop="225dp"
-                    android:background="@android:color/holo_orange_dark"
+                    android:background="@color/turquoise"
                     android:text="Left"
                     tools:ignore="MissingConstraints" />
 
@@ -65,7 +65,7 @@
                     android:layout_height="45dp"
                     android:layout_marginLeft="670dp"
                     android:layout_marginTop="225dp"
-                    android:background="@android:color/holo_orange_dark"
+                    android:background="@color/turquoise"
                     android:text="resume"
                     tools:ignore="MissingConstraints" />
 
@@ -75,8 +75,18 @@
                     android:layout_height="45dp"
                     android:layout_marginLeft="670dp"
                     android:layout_marginTop="225dp"
-                    android:background="@android:color/holo_orange_dark"
+                    android:background="@color/turquoise"
                     android:text="pause"
+                    tools:ignore="MissingConstraints" />
+                <Button
+                    android:id="@+id/highScore2"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="645dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@color/turquoise"
+                    android:gravity="left"
+
                     tools:ignore="MissingConstraints" />
 
                 <Button
@@ -85,10 +95,10 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="645dp"
                     android:layout_marginTop="60dp"
-                    android:background="@android:color/holo_orange_dark"
+                    android:background="@color/turquoise"
                     android:gravity="left"
-                    android:text="HS:"
                     tools:ignore="MissingConstraints" />
+
 
 
         </FrameLayout>
@@ -99,8 +109,7 @@
             android:layout_height="25dp"
             android:layout_marginLeft="645dp"
             android:layout_marginTop="130dp"
-            android:background="@android:color/holo_orange_dark"
-            android:text="score"
+            android:background="@color/turquoise"
             android:textColor="@color/black"
             android:textSize="18dp"
             android:textStyle="bold"
@@ -119,5 +128,28 @@
             app:layout_constraintStart_toStartOf="@+id/container"
             app:layout_constraintTop_toTopOf="@+id/container"
             tools:ignore="MissingConstraints" />
+
+        <RelativeLayout
+            android:id="@+id/menu"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:background="@color/turquoise"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+                <Button
+                    android:id="@+id/restart"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="75dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginRight="50dp"
+                    android:background="@color/Cream"
+                    android:text="Restart"
+                     />
+        </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

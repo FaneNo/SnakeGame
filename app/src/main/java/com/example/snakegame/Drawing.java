@@ -45,7 +45,7 @@ public class Drawing {
             // Draw the apple and the snake
 
             drawBackground(canvas);
-            drawScore(canvas, score);
+//            drawScore(canvas, score);
 
             apple.draw(canvas, paint);
             gapple.draw(canvas,paint);
@@ -67,26 +67,18 @@ public class Drawing {
      * Draws the background color of the game.
      */
     private void drawBackground(Canvas canvas) {
-        canvas.drawColor(Color.argb(255, 26, 128, 182)); //paint background first
+        canvas.drawColor(Color.rgb(255,253,208)); //paint background first
 
         playArea.setStyle(Paint.Style.FILL);
-        playArea.setColor(Color.argb(255, 0, 0, 170)); //sets color of border
+        playArea.setColor(Color.rgb(89,195,195)); //sets color of border
         canvas.drawRect((PlayArea.x-615),0,0,PlayArea.y,playArea); //draws border
-        playArea.setColor(Color.argb(150, 192, 192, 192)); //set color of play area
+        playArea.setColor(Color.rgb(255,166,158)); //set color of play area
         canvas.drawRect((PlayArea.x-625),10,10,PlayArea.y-75,playArea); //draws play area over border
 
 
 
     }
 
-    /*
-     * Draws the current score.
-     */
-    private void drawScore(Canvas canvas, int score) {
-        paint.setColor(Color.argb(255, 255, 255, 255));
-        paint.setTextSize(120);
-        canvas.drawText("" + score, 20, 120, paint);
-    }
 
     /*
      * Draws the pause message.
