@@ -55,7 +55,7 @@ public class NewGameNupdate implements Update{
     }
     @Override
     public boolean updateRequired() {
-
+        //Run at default 10 fps when condition is normal
         final long DEFAULT_TARGET_FPS = 10;
         // Run at 5 frames per second when poisoned
         final long POISONED_TARGET_FPS = 5;
@@ -131,6 +131,7 @@ public class NewGameNupdate implements Update{
         if(snake.checkDinner(poison.getLocation())){
             // Play a sound
             sound.playDrinkSound();
+            //set boolean condition poisoned to true
             poisoned = true;
             poison.move();
 
