@@ -21,6 +21,9 @@ public class NewGameNupdate implements Update{
     private long nextFrameTime;
     private GameState state;
     private Obstacle obstacle;
+
+    private ChocolateBar chocolateBar;
+
     private int highScore = 0;
 
     private boolean poisoned = false;
@@ -37,6 +40,7 @@ public class NewGameNupdate implements Update{
         snake = new Snake(context, new Point(NUM_BLOCKS_WIDE - 12, numBlocksHigh), blockSize);
         obstacle = new Obstacle(context,new Point(NUM_BLOCKS_WIDE- 12, numBlocksHigh -1), blockSize);
         poison = new Poison(context, new Point(NUM_BLOCKS_WIDE -12, numBlocksHigh -1), blockSize);
+        chocolateBar = new ChocolateBar(context, new Point(NUM_BLOCKS_WIDE - 12, numBlocksHigh -1), blockSize);
     }
     @Override
     public void newGame(){
@@ -45,6 +49,7 @@ public class NewGameNupdate implements Update{
         gapple.spawn();
         obstacle.spawn();
         poison.spawn();
+        chocolateBar.spawn();
         score = 0;
         nextFrameTime = System.currentTimeMillis();
     }
@@ -151,6 +156,13 @@ public class NewGameNupdate implements Update{
             state.setPaused(true);
         }
 
+        if(snake.checkDinner(chocolateBar.getLocation())) {
+            chocolateBar.consume();
+            //score *= chocolateBar.getScoreMultiplier();
+        }
+
+
+
     }
     @Override
     public Snake getSnake() {
@@ -171,6 +183,10 @@ public class NewGameNupdate implements Update{
     }
     @Override
     public Obstacle getObstacle() {return obstacle;}
+
+    public ChocolateBar getChocolateBar(){
+        return chocolateBar;
+    }
     @Override
     public int getHighScore(){
         return highScore;
