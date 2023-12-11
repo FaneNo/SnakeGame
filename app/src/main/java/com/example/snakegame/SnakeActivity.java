@@ -43,6 +43,7 @@ public class SnakeActivity extends Activity {
         setContentView(R.layout.activity_main);
         mediaPlayer = MediaPlayer.create(SnakeActivity.this, R.raw.bgm);
         mediaPlayer.start();
+        mediaPlayer.setLooping(true); //loops bgm so long games wont be silent
 
         // Get the pixel dimensions of the screen
         Display display = getWindowManager().getDefaultDisplay();

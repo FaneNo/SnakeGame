@@ -70,8 +70,13 @@ public class Drawing {
         canvas.drawColor(Color.rgb(255,253,208)); //paint background first
 
         playArea.setStyle(Paint.Style.FILL);
-        playArea.setColor(Color.rgb(89,195,195)); //sets color of border
+        playArea.setColor(Color.rgb(0,0,0)); //sets color of border
         canvas.drawRect((PlayArea.x-615),0,0,PlayArea.y,playArea); //draws border
+        playArea.setColor(Color.rgb(89,195,195)); //sets color of border
+        canvas.drawRect((PlayArea.x-617),3,3,PlayArea.y-65,playArea); //draws middle of border
+        playArea.setColor(Color.rgb(0,0,0)); //sets color of border
+        canvas.drawRect((PlayArea.x-623),7,7,PlayArea.y-73,playArea); //draws border
+
         playArea.setColor(Color.rgb(255,166,158)); //set color of play area
         canvas.drawRect((PlayArea.x-625),10,10,PlayArea.y-75,playArea); //draws play area over border
 
