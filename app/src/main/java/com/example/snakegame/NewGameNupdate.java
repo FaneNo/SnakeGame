@@ -23,6 +23,8 @@ public class NewGameNupdate implements Update{
     private Obstacle obstacle;
     private int highScore = 0;
 
+    private boolean poisoned = false;
+
     public NewGameNupdate(Context context, Point size, GameState state){
 
         this.state = state;
@@ -49,8 +51,12 @@ public class NewGameNupdate implements Update{
     @Override
     public boolean updateRequired() {
 
-        // Run at 10 frames per second
-        final long TARGET_FPS = 10;
+        final long DEFAULT_TARGET_FPS = 10;
+        // Run at 5 frames per second when poisoned
+        final long POISONED_TARGET_FPS = 5;
+
+        // Determine the target FPS based on whether the snake is poisoned
+        final long TARGET_FPS = poisoned ? POISONED_TARGET_FPS : DEFAULT_TARGET_FPS;
         // There are 1000 milliseconds in a second
         final long MILLIS_PER_SECOND = 1000;
 
@@ -73,6 +79,7 @@ public class NewGameNupdate implements Update{
     public void update() {
 
         // Move the snake
+
         snake.move();
 
         // Did the head of the snake eat the apple?
@@ -117,7 +124,11 @@ public class NewGameNupdate implements Update{
             sound.playEatSound();
         }
         if(snake.checkDinner(poison.getLocation())){
+            // Play a sound
+            sound.playDrinkSound();
+            poisoned = true;
             poison.move();
+
             //this handler adds a delay when the poison is drank
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {
@@ -125,10 +136,11 @@ public class NewGameNupdate implements Update{
                 public void run() {
                     //Do something after 3000ms
                     poison.spawn();
+                    poisoned = false;
                 }
             }, 3000);
-            // Play a sound
-            sound.playDrinkSound();
+
+
         }
 
 

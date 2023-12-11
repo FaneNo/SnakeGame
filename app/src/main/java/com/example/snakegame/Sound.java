@@ -46,7 +46,8 @@ public class Sound {
 
             descriptor = assetManager.openFd("drink.wav");
             mDrinkID = mSP.load(descriptor, 0);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             // Handle error
             Log.d("error", "failed to load sound files");
         }

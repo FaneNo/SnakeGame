@@ -58,7 +58,7 @@ class Snake extends SnakeActivity implements SurfaceHolder.Callback {
     // A bitmap for the body
     private Bitmap mBitmapBody;
 
-
+    private boolean useMoveTwo = false;
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
 
@@ -169,6 +169,47 @@ class Snake extends SnakeActivity implements SurfaceHolder.Callback {
             segmentLocations.get(i).x = segmentLocations.get(i - 1).x;
             segmentLocations.get(i).y = segmentLocations.get(i - 1).y;
         }
+
+
+
+        // Move the head in the appropriate heading
+        // Get the existing head position
+        Point p = segmentLocations.get(0);
+
+        // Move it appropriately
+        switch (heading) {
+            case UP:
+                p.y--;
+                break;
+
+            case RIGHT:
+                p.x++;
+                break;
+
+            case DOWN:
+                p.y++;
+                break;
+
+            case LEFT:
+                p.x--;
+                break;
+        }
+
+    }
+    void movetwo() {
+        // Move the body
+        // Start at the back and move it
+        // to the position of the segment in front of it
+        for (int i = segmentLocations.size() - 1; i > 0; i--) {
+            segmentLocations.get(i).x = segmentLocations.get(i - 1).x;
+            segmentLocations.get(i).y = segmentLocations.get(i - 1).y;
+        }
+        try {
+            Thread.sleep(300); // Adjust the value (in milliseconds) to control the speed
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        useMoveTwo = false;
 
         // Move the head in the appropriate heading
         // Get the existing head position
