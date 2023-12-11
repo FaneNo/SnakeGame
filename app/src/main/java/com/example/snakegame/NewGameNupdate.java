@@ -121,7 +121,7 @@ public class NewGameNupdate implements Update{
             }
 
             // Play a sound
-            sound.playEatSound();
+            sound.playGrappleSound();
         }
         if(snake.checkDinner(poison.getLocation())){
             // Play a sound

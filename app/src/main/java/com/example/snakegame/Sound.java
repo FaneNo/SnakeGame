@@ -17,6 +17,8 @@ public class Sound {
     private int mCrashID = -1;
     private int mDrinkID = -1;
 
+    private int mEat_Grapple = -1;
+
     public Sound(Context context) {
         // Initialize the SoundPool
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -46,6 +48,9 @@ public class Sound {
 
             descriptor = assetManager.openFd("drink.wav");
             mDrinkID = mSP.load(descriptor, 0);
+
+            descriptor = assetManager.openFd("grapple.wav");
+            mEat_Grapple = mSP.load(descriptor, 0);
         }
         catch (IOException e) {
             // Handle error
@@ -55,7 +60,7 @@ public class Sound {
 
     public void playEatSound() {
         Log.d("SoundManager", "Playing eat sound");
-        mSP.play(mEat_ID, 1, 1, 0, 0, 1);
+        mSP.play(mEat_ID, .6f, .6f, 0, 0, 1);
     }
 
     public void playCrashSound() {
@@ -65,6 +70,11 @@ public class Sound {
 
     public void playDrinkSound() {
         Log.d("SoundManager", "Playing drinking sound");
-        mSP.play(mDrinkID, 10, 10, 0, 0, 1);
+        mSP.play(mDrinkID, 1, 1, 0, 0, 1);
+    }
+
+    public void playGrappleSound() {
+        Log.d("SoundManager", "Playing eating green apple sound");
+        mSP.play(mEat_Grapple, 1, 1, 0, 0, 1);
     }
 }
