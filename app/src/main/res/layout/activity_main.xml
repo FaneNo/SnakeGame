@@ -35,7 +35,7 @@
                     android:layout_marginLeft="725dp"
                     android:layout_marginTop="225dp"
                     android:background="@color/turquoise"
-                    android:text="Right"
+                    android:drawableTop="@drawable/right_arrow"
                     tools:ignore="MissingConstraints" />
 
                 <Button
@@ -45,7 +45,7 @@
                     android:layout_marginLeft="670dp"
                     android:layout_marginTop="275dp"
                     android:background="@color/turquoise"
-                    android:text="Down"
+                    android:drawableTop="@drawable/down_arrow"
                     tools:ignore="MissingConstraints" />
 
                 <Button
@@ -55,7 +55,7 @@
                     android:layout_marginLeft="615dp"
                     android:layout_marginTop="225dp"
                     android:background="@color/turquoise"
-                    android:text="Left"
+                    android:drawableTop="@drawable/left_arrow"
                     tools:ignore="MissingConstraints" />
 
 
