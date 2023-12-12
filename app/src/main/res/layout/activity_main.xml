@@ -25,7 +25,7 @@
                     android:layout_marginLeft="670dp"
                     android:layout_marginTop="175dp"
                     android:background="@color/turquoise"
-                    android:drawableTop="@drawable/up_arrow"
+                    android:drawableTop="@drawable/baseline_arrow_drop_up_24"
                     android:visibility="visible" />
 
                 <Button
@@ -35,7 +35,7 @@
                     android:layout_marginLeft="725dp"
                     android:layout_marginTop="225dp"
                     android:background="@color/turquoise"
-                    android:drawableTop="@drawable/right_arrow"
+                    android:drawableTop="@drawable/baseline_arrow_right_24"
                     tools:ignore="MissingConstraints" />
 
                 <Button
@@ -45,7 +45,7 @@
                     android:layout_marginLeft="670dp"
                     android:layout_marginTop="275dp"
                     android:background="@color/turquoise"
-                    android:drawableTop="@drawable/down_arrow"
+                    android:drawableTop="@drawable/baseline_arrow_drop_down_24"
                     tools:ignore="MissingConstraints" />
 
                 <Button
@@ -55,7 +55,7 @@
                     android:layout_marginLeft="615dp"
                     android:layout_marginTop="225dp"
                     android:background="@color/turquoise"
-                    android:drawableTop="@drawable/left_arrow"
+                    android:drawableTop="@drawable/baseline_arrow_left_24"
                     tools:ignore="MissingConstraints" />
 
 
@@ -66,7 +66,7 @@
                     android:layout_marginLeft="670dp"
                     android:layout_marginTop="225dp"
                     android:background="@color/turquoise"
-                    android:text="resume"
+                    android:drawableTop="@drawable/play_arrow_24"
                     tools:ignore="MissingConstraints" />
 
                 <Button
@@ -76,7 +76,8 @@
                     android:layout_marginLeft="670dp"
                     android:layout_marginTop="225dp"
                     android:background="@color/turquoise"
-                    android:text="pause"
+                    android:drawableTop="@drawable/baseline_pause_24"
+
                     tools:ignore="MissingConstraints" />
                 <Button
                     android:id="@+id/highScore2"
